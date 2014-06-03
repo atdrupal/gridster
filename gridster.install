@@ -1,0 +1,10 @@
+<?php
+/**
+ * @file gridster.install
+ */
+
+/**
+ * Implements hook_schema()
+ */
+function gridster_schema() {
+}
