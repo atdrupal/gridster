@@ -10,9 +10,17 @@ interface GridMasterInterface {
   public function getId();
 
   /**
-   * @return <WidgetInterface> keyed array of existing widgets.
+   * @return <GridMasterWidgetInterface> keyed array of existing widgets.
    */
   public function getWidgets();
+
+  /**
+   * Get widget by UUID.
+   *
+   * @param uuid $uuid
+   * @return GridMasterWidgetInterface
+   */
+  public function getWidget(string $uuid);
 
   /**
    * Add a widget to grid-master.

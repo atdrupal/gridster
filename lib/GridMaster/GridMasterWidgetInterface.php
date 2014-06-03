@@ -53,4 +53,9 @@ interface GridMasterWidgetInterface {
    * @param string $type
    */
   public function setWidgetType($type);
+
+  /**
+   * @return \Drupal\gridster\Widget\WidgetInterface
+   */
+  public function getWidget();
 }

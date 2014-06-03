@@ -29,10 +29,22 @@ function gridster_usecase_import_gridmaster($json) {
 }
 
 /**
- *
+ * Render a grid-master
  */
 function gridster_usecase_render_gridmaster($uuid) {
   $gm_manager = new Drupal\gridster\Gridster\GridMasterManager();
   $grid_master = $gm_manager->load($uuid);
-  $grid_master->getId();
+  $output = $grid_master->render();
+}
+
+/**
+ * Render a widget defined in grid-master
+ */
+function gridster_usecase_render_widget($gm_uuid, $widget_uuid) {
+  $gm_manager = new Drupal\gridster\Gridster\GridMasterManager();
+  if ($grid_master = $gm_manager->load($gm_uuid)) {
+    if ($gm_widget = $grid_master->getWidget($widget_uuid)) {
+      $gm_widget->getWidget()->render();
+    }
+  }
 }
