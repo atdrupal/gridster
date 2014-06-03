@@ -32,4 +32,25 @@ interface GridMasterInterface {
    * @param uuid $gm_widget_id
    */
   public function removeWidgetById(string $gm_widget_id);
+
+  /**
+   * Setter for render property.
+   *
+   * @param \Drupal\gridster\Gridster\Helper\RenderInterface $render
+   */
+  public function setRender(Helper\RenderInterface $render);
+
+  /**
+   * Getter for render property.
+   *
+   * @return Helper\RenderInterface
+   */
+  public function getRender();
+
+  /**
+   * Render gridster, should use render property to process.
+   *
+   * @return string
+   */
+  public function render();
 }
