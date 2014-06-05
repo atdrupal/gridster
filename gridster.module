@@ -2,4 +2,9 @@
 
 /**
  * @file gridster.module
+ *
+ * Things to do:
+ *  1. Provide wrapper API for rendering gridster.
+ *  2. Provide gridster layout for ctools's page manager.
+ *  3. Support pane resizing for in-place-editor.
  */
