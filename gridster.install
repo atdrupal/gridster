@@ -6,5 +6,5 @@
 /**
  * Implements hook_schema()
  */
-function gridster_schema() {
-}
+//function gridster_schema() {
+//}

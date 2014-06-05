@@ -1,5 +1,8 @@
 name = Gridster
+core = 7.x
 description = "Provide Gridster.JS integration"
 package = GO1
+
 dependencies[] = ctools
-core = 7.x
+dependencies[] = xautoload
+dependencies[] = composer_manager
