@@ -2,9 +2,16 @@
 
 /**
  * @file gridster.module
- *
- * Things to do:
- *  1. Provide wrapper API for rendering gridster.
- *  2. Provide gridster layout for ctools's page manager.
- *  3. Support pane resizing for in-place-editor.
  */
+
+/**
+ * Implements hook_ctools_plugin_directory()
+ */
+function gridster_ctools_plugin_directory($module, $plugin) {
+  if ('panels' === $module) {
+    switch ($plugin) {
+      case 'styles':
+        return 'plugins/' . $plugin;
+    }
+  }
+}

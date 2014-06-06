@@ -6,3 +6,5 @@ package = GO1
 dependencies[] = ctools
 dependencies[] = xautoload
 dependencies[] = composer_manager
+dependencies[] = panels
+dependencies[] = jquery_update
