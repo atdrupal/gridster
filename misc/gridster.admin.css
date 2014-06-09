@@ -1,0 +1,4 @@
+.panel-panel .gridster:hover > li {
+  padding: 0;
+  border: 1px #333 dotted;
+}

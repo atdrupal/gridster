@@ -25,12 +25,10 @@ function theme_panels_gridster_style_render_region($vars) {
 
   drupal_add_js(drupal_get_path('module', 'gridster') . '/misc/jquery.gridster.min.js');
   drupal_add_css(drupal_get_path('module', 'gridster') . '/misc/jquery.gridster.min.css');
+  drupal_add_css(drupal_get_path('module', 'gridster') . '/misc/gridster.css');
   drupal_add_js(drupal_get_path('module', 'gridster') . '/misc/gridster.js');
 
-  $output = '<ul class="gridster">';
-
-  # dsm(array_keys($panes));
-  #dsm($settings);
+  $output = sprintf('<ul class="gridster" id="gridster-%s-%s">', $vars['display']->did, $vars['region_id']);
 
   foreach ($panes as $pane_id => $item) {
     if ($settings['widget_settings'][$pane_id]) {
@@ -41,12 +39,25 @@ function theme_panels_gridster_style_render_region($vars) {
     }
 
     $output .= sprintf(
-      '<li data-row="%d" data-col="%d" data-sizex="%d" data-sizey="%d">%s</li>',
-      $row, $col, $x, $y, $item
+      '<li data-id="%d" data-row="%d" data-col="%d" data-sizex="%d" data-sizey="%d">%s</li>',
+      $pane_id, $row, $col, $x, $y, $item
     );
   }
 
   $output .= '</ul>';
+
+  if (user_access('use page manager')) {
+    $form = drupal_get_form(
+      "gridster_panel_region_config_form_{$vars['display']->did}_{$vars['region_id']}",
+      $vars['display']->did,
+      $vars['region_id'],
+      $settings['widget_settings']
+    );
+
+    $form['#attached']['js'][] = drupal_get_path('module', 'gridster') . '/misc/gridster.admin.js';
+    $form['#attached']['css'][] = drupal_get_path('module', 'gridster') . '/misc/gridster.admin.css';
+    $output .= render($form);
+  }
 
   return $output;
 }
@@ -90,5 +101,35 @@ function panels_gridster_style_settings_form($settings) {
   return $form;
 }
 
+/**
+ *
+ */
 function panels_gridster_style_settings_validate() {
+}
+
+function gridster_panel_region_config_form($form, $form_state, $display_id, $region_id, $settings) {
+  $form['display_id'] = array('#type' => 'hidden', '#value' => $display_id);
+  $form['region_id'] = array('#type' => 'hidden', '#value' => $region_id);
+
+  $form['widget_settings'] = array(
+    '#type' => 'hidden',
+    '#default_value' => json_encode($settings),
+  );
+
+  $form["submit_{$display_id}_{$region_id}"] = array(
+    '#type' => 'submit',
+    '#value' => t('Save')
+  );
+
+  return $form;
+}
+
+function gridster_panel_region_config_form_submit($form, $form_state) {
+  $display_id = $form_state['values']['display_id'];
+  $region_id = $form_state['values']['region_id'];
+  $settings = $form_state['values']['widget_settings'];
+
+  $display = panels_load_display($display_id);
+  $display->panel_settings['style_settings'][$region_id]['widget_settings'] = $settings;
+  panels_save_display($display);
 }

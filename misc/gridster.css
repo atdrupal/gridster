@@ -1,0 +1,8 @@
+.panel-panel .gridster {
+  margin: 0;
+  list-style-type: none;
+}
+
+.panel-panel .gridster > li {
+  padding: 1px;
+}
