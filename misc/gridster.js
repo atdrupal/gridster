@@ -11,8 +11,6 @@
           , resize: { enabled: admin }
         };
 
-        console.log(options);
-
         $g = $(this).gridster(options).data('gridster');
         admin ? $g.enable() : $g.disable();
       });
