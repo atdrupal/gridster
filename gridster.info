@@ -1,10 +1,11 @@
 name = Gridster
+version = 7.x-1.0-dev
 core = 7.x
 description = "Provide Gridster.JS integration"
 package = GO1
 
 dependencies[] = ctools
-dependencies[] = xautoload
+dependencies[] = xautoload (>= 7.x-5.x)
 dependencies[] = composer_manager
 dependencies[] = panels
 dependencies[] = jquery_update
