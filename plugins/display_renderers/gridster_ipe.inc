@@ -1,5 +1,5 @@
 <?php
 
 $plugin = array(
-  'renderer' => 'Drupal\gridster\Render',
+  'renderer' => 'Drupal\gridster\RenderIPE',
 );

@@ -7,3 +7,25 @@
  */
 
 require_once __DIR__ . '/gridster.hooks.inc';
+
+/**
+ * Alter to IPE config form.
+ */
+function gridster_form_panels_ipe_edit_control_form_alter(&$form, $form_state) {
+  if (FALSE !== strpos($form['#action'], '/panels/ajax/gridster_ipe/save_form/')) {
+    $default = isset($form['#display']->panel_settings['display_settings']) ? $form['#display']->panel_settings['display_settings'] : array();
+    $form['display_settings'] = array(
+      '#type' => 'hidden',
+      '#attributes' => array('class' => 'gridster-display-settings-field'),
+      '#default_value' => json_encode($default),
+      '#attached' => array(
+        'js' => array(drupal_get_path('module', 'gridster') . '/misc/gogridster.admin.js'),
+        'css' => array(drupal_get_path('module', 'gridster') . '/misc/gogridster.admin.css')
+      ),
+    );
+
+    array_unshift($form['buttons']['submit']['#submit'], function($form, &$form_state) {
+      $form_state['display']->panel_settings['display_settings'] = json_decode($form_state['values']['display_settings'], true);
+    });
+  }
+}

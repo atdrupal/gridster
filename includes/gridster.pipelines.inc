@@ -8,6 +8,23 @@
  * Implements hook_default_panels_renderer_pipeline().
  */
 function gridster_default_panels_renderer_pipeline() {
+  $renders[] = array(
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'perm',
+          'settings' => array(
+            'perm' => 'use panels in place editing',
+          ),
+          'context' => 'logged-in-user',
+        ),
+      ),
+      'logic' => 'and',
+    ),
+    'renderer' => 'gridster_ipe',
+    'options' => array(),
+  );
+
   $pipeline = new stdClass();
   $pipeline->disabled = FALSE;
   $pipeline->api_version = 1;
@@ -16,25 +33,9 @@ function gridster_default_panels_renderer_pipeline() {
   $pipeline->admin_description = t('Allows privileged users to update and rearrange the content while viewing this panel.');
   $pipeline->weight = 0;
   $pipeline->settings = array(
-    'renderers' => array(
-      0 => array(
-        'access' => array(
-          'plugins' => array(
-            0 => array(
-              'name' => 'perm',
-              'settings' => array(
-                'perm' => 'use panels in place editing',
-              ),
-              'context' => 'logged-in-user',
-            ),
-          ),
-          'logic' => 'and',
-        ),
-        'renderer' => 'gridster_ipe',
-        'options' => array(),
-      ),
-    ),
+    'renderers' => $renders,
   );
 
   return array($pipeline->name => $pipeline);
 }
+

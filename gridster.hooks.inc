@@ -11,8 +11,8 @@ function gridster_library() {
     'website' => 'http://www.go1.com.au/',
     'version' => VERSION,
     'js' => array(
-      "$base/misc/gogridster/angular-gridster/angular-gridster.js" => array(),
-      "$base/misc/gogridster/gogridster/gogridster.js" => array(),
+      "$base/misc/gogridster/src/common/directives/angular-gridster/angular-gridster.js" => array(),
+      "$base/misc/gogridster/build/gogridster.js" => array(),
       "$base/misc/gogridster.js" => array(),
     ),
     'css' => array(
