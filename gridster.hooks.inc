@@ -17,6 +17,8 @@ function gridster_library() {
     ),
     'css' => array(
       "$base/misc/gogridster/angular-gridster/angular-gridster.css" => array(),
+      "$base/misc/gogridster/build/gogridster.css" => array(),
+      "$base/misc/gogridster.drupal.css" => array(),
     ),
     'dependencies' => array(
       array('system', 'ui.resizable'),

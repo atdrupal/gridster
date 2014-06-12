@@ -13,7 +13,7 @@ class RenderIPE extends Render {
       'title' => "[$region_id]",
       'options' => array(
         'draggable' => array('enabled' => false),
-        'resizable' => array('enabled' => false),
+        'resizable' => array('enabled' => false)
       ),
     );
 
@@ -24,7 +24,7 @@ class RenderIPE extends Render {
         'title' => isset($this->pane_info[$id]->title) ? $this->pane_info[$id]->title : '',
         'content' => $content,
         'options' => array(
-          'position' => array('col' => 0, 'row' => 0, 'sizeX' => 1, 'sizeY' => 1)
+          'position' => array('col' => null, 'row' => null, 'sizeX' => null, 'sizeY' => null)
         ),
       );
 
