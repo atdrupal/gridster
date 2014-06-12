@@ -9,9 +9,7 @@
         var div_id = $('div[ng-app="'+ app_name +'"]').attr('id');
         $('#' + div_id).scope().$digest();
       }
-      catch (e) {
-
-      }
+      catch (e) {}
     }
   };
 
@@ -24,8 +22,6 @@
   Drupal.behaviors.gridsterGoInit = {
     attach: function(context, settings) {
       var start = function(app_id, div_id, settings, boot) {
-        console.log([app_id, div_id, settings, boot]);
-
         angular
           .module(app_id, ['goGridster'])
           .controller('gridsterCtrl', ['$scope', function($scope) {
