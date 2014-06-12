@@ -10,7 +10,7 @@ class RenderIPE extends Render {
   protected function buildStructure($region_id, $panes, $widget_settings) {
     $return = array(
       'id' => $this->getGridmasterId($region_id),
-      'title' => "[$region_id]",
+      'title' => '', // "[$region_id]",
       'options' => array(
         'draggable' => array('enabled' => false),
         'resizable' => array('enabled' => false)
