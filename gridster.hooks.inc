@@ -31,29 +31,11 @@ function gridster_library() {
 }
 
 /**
- * Implements hook_forms()
- *
- * @param string $form_id
- * @param array $args
- * @return array
- */
-function gridster_forms($form_id, $args) {
-  $forms = array();
-
-  if (0 === strpos($form_id, 'gridster_panel_region_config_form_')) {
-    $forms[$form_id]['callback'] = 'gridster_panel_region_config_form';
-  }
-
-  return $forms;
-}
-
-/**
  * Implements hook_ctools_plugin_directory()
  */
 function gridster_ctools_plugin_directory($module, $plugin) {
   if ('panels' === $module) {
     switch ($plugin) {
-      case 'styles':
       case 'display_renderers':
         return 'plugins/' . $plugin;
     }
