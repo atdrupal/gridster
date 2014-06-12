@@ -51,6 +51,36 @@ class RenderIPE extends Render {
       array('type' => 'setting')
     );
 
-    return "<div id='{$id}' ng-app='{$id}' ng-controller='gridsterCtrl'></div>";
+    // Generate this region's 'empty' placeholder pane from the IPE plugin.
+    $empty_ph = theme('panels_ipe_placeholder_pane', array(
+      'region_id' => $region_id,
+      'region_title' =>  $this->plugins['layout']['regions'][$region_id]
+    ));
+
+    // Wrap the placeholder in some guaranteed markup.
+    $control = '<div class="panels-ipe-placeholder panels-ipe-on panels-ipe-portlet-marker panels-ipe-portlet-static">'
+      . $empty_ph . theme('panels_ipe_add_pane_button', array(
+          'region_id' => $region_id,
+          'display' => $this->display,
+          'renderer' => $this
+      ))
+      . "</div>";
+
+    $output = theme('panels_ipe_region_wrapper', array(
+      'output' => '',
+      'region_id' => $region_id,
+      'display' => $this->display,
+      'controls' => $control,
+      'renderer' => $this
+    ));
+
+    return "<div"
+        . " id='panels-ipe-regionid-{$region_id}'"
+        // . " id='{$id}'"
+        . " class='panels-ipe-region'"
+        . " data-region='{$region_id}'"
+        . " ng-app='{$id}'"
+        . " ng-controller='gridsterCtrl'"
+        . ">{$output}</div>";
   }
 }

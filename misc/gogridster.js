@@ -5,7 +5,8 @@
       Drupal.settings.gridster[app_name].options.draggable.enabled = status;
       Drupal.settings.gridster[app_name].options.resizable.enabled = status;
       try {
-        $('#' + app_name).scope().$digest();
+        var div_id = $('div[ng-app="'+ app_name +'"]').attr('id');
+        $('#' + div_id).scope().$digest();
       }
       catch (e) {}
     }
@@ -27,14 +28,16 @@
           }]);
       }
 
-      for (var app_id in settings.gridster) {
-        $('#' + app_id, context).once('gridsterGoInit').each(function(){
-          $(this).append('<div grid-master="'+ app_id +'"></div>');
+      for (var app_name in settings.gridster) {
+        var div_id = $('div[ng-app="'+ app_name +'"]').attr('id');
 
-          initAngular(app_id, settings);
+        $('#' + div_id, context).once('gridsterGoInit').each(function(){
+          $(this).append('<div grid-master="'+ app_name +'"></div>');
+
+          initAngular(app_name, settings);
 
           if (firstModule >= 1) {
-            angular.bootstrap($('#' + app_id).get(0), [app_id]);
+            angular.bootstrap($('#' + div_id).get(0), [app_name]);
           }
 
           firstModule++;
