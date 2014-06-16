@@ -19,7 +19,6 @@ function gridster_library() {
  */
 function gridster_ctools_plugin_directory($module, $plugin) {
   switch ($plugin) {
-    case 'content_types':
     case 'display_renderers':
       return 'plugins/' . $plugin;
   }

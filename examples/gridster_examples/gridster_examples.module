@@ -1,0 +1,14 @@
+<?php
+/**
+ * @file gridster_examples.module
+ */
+
+/**
+ * Implements hook_ctools_plugin_directory()
+ */
+function gridster_examples_ctools_plugin_directory($module, $plugin) {
+  switch ($plugin) {
+    case 'content_types':
+      return 'plugins/' . $plugin;
+  }
+}

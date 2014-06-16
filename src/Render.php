@@ -62,8 +62,8 @@ class Render extends panels_renderer_ipe {
           $return['widgets'][$id]['template'] = $this->pane_info[$id]->template;
           list($prefix, $suffix) = explode('%gridster_template_aware', $return['widgets'][$id]['content']);
           $return['widgets'][$id]['content'] = $this->pane_info[$id]->content;
-          $return['widgets'][$id]['prefix'] = $prefix;
-          $return['widgets'][$id]['suffix'] = $suffix;
+          $return['widgets'][$id]['options']['prefix'] = $prefix;
+          $return['widgets'][$id]['options']['suffix'] = $suffix;
         }
       }
     }
