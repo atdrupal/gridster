@@ -1,0 +1,22 @@
+{
+  "gogridster": {
+    "title":"[AngularJS] GoGridster"
+    , "website":"http://www.go1.com.au/"
+    , "version":"7.29-dev"
+    , "js": {
+      "%base/misc/gogridster/src/common/directives/angular-gridster/angular-gridster.js": []
+      , "%base/misc/gogridster/build/gogridster.js": []
+      , "%base/misc/gogridster.js": []
+    }
+  , "css": {
+    "%base/misc/gogridster/angular-gridster/angular-gridster.css": []
+    , "%base/misc/gogridster/build/gogridster.css": []
+    , "%base/misc/gogridster.drupal.css": []
+  }
+  , "dependencies":[
+      ["system", "ui.resizable"]
+      , ["system", "ui.draggable"]
+      , ["angularjs", "angularjs"]
+    ]
+  }
+}

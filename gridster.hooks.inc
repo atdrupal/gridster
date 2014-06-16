@@ -4,30 +4,16 @@
  * Implements hook_library()
  */
 function gridster_library() {
-  $base = drupal_get_path('module', 'gridster');
-
-  $libraries['gogridster'] = array(
-    'title' => '[AngularJS] GoGridster',
-    'website' => 'http://www.go1.com.au/',
-    'version' => VERSION,
-    'js' => array(
-      "$base/misc/gogridster/src/common/directives/angular-gridster/angular-gridster.js" => array(),
-      "$base/misc/gogridster/build/gogridster.js" => array(),
-      "$base/misc/gogridster.js" => array(),
-    ),
-    'css' => array(
-      "$base/misc/gogridster/angular-gridster/angular-gridster.css" => array(),
-      "$base/misc/gogridster/build/gogridster.css" => array(),
-      "$base/misc/gogridster.drupal.css" => array(),
-    ),
-    'dependencies' => array(
-      array('system', 'ui.resizable'),
-      array('system', 'ui.draggable'),
-      array('angularjs', 'angularjs')
-    ),
+  return array(
+    json_decode(
+      str_replace(
+        '%base',
+        drupal_get_path('module', 'gridster'),
+        file_get_contents(drupal_get_path('module', 'gridster') . '/misc/fixtures/libraries.json')
+      ),
+      true
+    )
   );
-
-  return $libraries;
 }
 
 /**
@@ -55,7 +41,7 @@ function gridster_ctools_plugin_directory($module, $plugin) {
  *   The name of the API about which information is being requested.
  */
 function gridster_ctools_plugin_api($owner, $api) {
-  if ($owner == 'panels' && $api == 'pipelines') {
+  if ($owner === 'panels' && $api === 'pipelines') {
     return array(
       'version' => 1,
       'path' => drupal_get_path('module', 'gridster') . '/includes',
