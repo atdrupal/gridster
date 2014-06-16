@@ -43,6 +43,10 @@
       }
 
       appName = 'gridsterApp__'+ data.displayId +'__' + data.regionId;
+
+      Drupal.settings.gridster[appName] = Drupal.settings.gridster[appName] || {};
+      Drupal.settings.gridster[appName].widgets = Drupal.settings.gridster[appName].widgets || {};
+      Drupal.settings.gridster[appName].widgets[data.paneId] = Drupal.settings.gridster[appName].widgets[data.paneId] || {};
       Drupal.settings.gridster[appName].widgets[data.paneId] = {
         label: '%label'
         , title: data.paneTitle
