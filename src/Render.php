@@ -26,7 +26,9 @@ class Render extends panels_renderer_ipe {
 
     if (!empty($content->content)) {
       $this->pane_info[$pane->pid] = $content;
-      return $content->content;
+      $output = is_string($content->content) ? $content->content : '%gridster_template_aware';
+      $output = theme('panels_ipe_pane_wrapper', array('output' => $output, 'pane' => $pane, 'display' => $this->display, 'renderer' => $this));
+      return "<div id=\"panels-ipe-paneid-{$pane->pid}\" class=\"panels-ipe-portlet-wrapper panels-ipe-portlet-marker\">" . $output . "</div>";
     }
   }
 
@@ -54,9 +56,18 @@ class Render extends panels_renderer_ipe {
       if (isset($widget_settings[$id]['options']['position'])) {
         $return['widgets'][$id]['options']['position'] = $widget_settings[$id]['options']['position'];
       }
-    }
 
-    dsm($return['widgets']);
+      if (false !== strpos($return['widgets'][$id]['content'], '%gridster_template_aware')) {
+        if (isset($this->pane_info[$id]->template)) {
+          $return['widgets'][$id]['template'] = $this->pane_info[$id]->template;
+          list($prefix, $suffix) = explode('%gridster_template_aware', $return['widgets'][$id]['content']);
+          $return['widgets'][$id]['content'] = $this->pane_info[$id]->content;
+          $return['widgets'][$id]['prefix'] = $prefix;
+          $return['widgets'][$id]['suffix'] = $suffix;
+          dsm($return['widgets'][$id]);
+        }
+      }
+    }
 
     return $return;
   }

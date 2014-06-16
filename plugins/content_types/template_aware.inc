@@ -19,11 +19,12 @@ $plugin = array(
  * @return string
  */
 function gridster_template_aware_content_type_render($subtype, $conf, $panel_args) {
+  global $base_path;
+
   $return = new stdClass();
   $return->title = 'title is here';
-  $return->content = array(
-    'name' => 'Drupal',
-    'template' => drupal_get_path('module', 'gridster') . '/plugins/content_types/template.html',
-  );
+  $return->template = $base_path . drupal_get_path('module', 'gridster') . '/plugins/content_types/template.html';
+  $return->content = array('name' => 'Drupal');
+  
   return $return;
 }
