@@ -64,7 +64,6 @@ class Render extends panels_renderer_ipe {
           $return['widgets'][$id]['content'] = $this->pane_info[$id]->content;
           $return['widgets'][$id]['prefix'] = $prefix;
           $return['widgets'][$id]['suffix'] = $suffix;
-          dsm($return['widgets'][$id]);
         }
       }
     }
