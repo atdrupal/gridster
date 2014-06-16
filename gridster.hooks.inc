@@ -4,15 +4,13 @@
  * Implements hook_library()
  */
 function gridster_library() {
-  return array(
-    json_decode(
-      str_replace(
-        '%base',
-        drupal_get_path('module', 'gridster'),
-        file_get_contents(drupal_get_path('module', 'gridster') . '/misc/fixtures/libraries.json')
-      ),
-      true
-    )
+  return json_decode(
+    str_replace(
+      '%base',
+      drupal_get_path('module', 'gridster'),
+      file_get_contents(drupal_get_path('module', 'gridster') . '/misc/fixtures/libraries.json')
+    ),
+    true
   );
 }
 
