@@ -18,12 +18,10 @@ function gridster_library() {
  * Implements hook_ctools_plugin_directory()
  */
 function gridster_ctools_plugin_directory($module, $plugin) {
-  if ('panels' === $module) {
-    switch ($plugin) {
-      case 'content_types':
-      case 'display_renderers':
-        return 'plugins/' . $plugin;
-    }
+  switch ($plugin) {
+    case 'content_types':
+    case 'display_renderers':
+      return 'plugins/' . $plugin;
   }
 }
 

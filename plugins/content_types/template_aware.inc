@@ -1,8 +1,29 @@
 <?php
 
 $plugin = array(
+  'title' => '[Gridster Demo] Template Aware',
   'single' => true,
-  'title' => '[Demo] Template Aware',
+  'description' => 'Template aware widget',
   'content type' => 'gridster_template_aware_widget_content_type',
-  'category' => 'Demo',
+  'category' => t('Widgets'),
+  // 'top level' => true,
+  'render callback' => 'gridster_template_aware_content_type_render',
 );
+
+/**
+ * …
+ *
+ * @param type $subtype
+ * @param type $conf
+ * @param type $panel_args
+ * @return string
+ */
+function gridster_template_aware_content_type_render($subtype, $conf, $panel_args) {
+  $return = new stdClass();
+  $return->title = 'title is here';
+  $return->content = array(
+    'name' => 'Drupal',
+    'template' => drupal_get_path('module', 'gridster') . '/plugins/content_types/template.html',
+  );
+  return $return;
+}
